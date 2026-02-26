@@ -11,16 +11,31 @@ CALENDAR_NAME = "AITU Schedule - Trimester 3"
 
 def get_client_config():
     """Returns the Google Cloud Client config from Streamlit Secrets or a local file."""
-    if "GCP_CREDENTIALS_JSON" in st.secrets:
-        return json.loads(st.secrets["GCP_CREDENTIALS_JSON"])
-    else:
-        # Fallback to local file for development
-        with open('credentials_web.json', 'r') as f:
-            return json.load(f)
+    try:
+        if "GCP_CREDENTIALS_JSON" in st.secrets:
+            return json.loads(st.secrets["GCP_CREDENTIALS_JSON"])
+    except Exception:
+        pass
+        
+    # Fallback to local file for development
+    with open('credentials_web.json', 'r') as f:
+        return json.load(f)
 
-def get_auth_url(redirect_uri="http://localhost:8501/"):
+def get_redirect_uri():
+    """Returns the correct redirect URI based on environment (local vs cloud)."""
+    try:
+        if "REDIRECT_URI" in st.secrets:
+            return st.secrets["REDIRECT_URI"]
+    except Exception:
+        pass
+    return "http://localhost:8501/"
+
+def get_auth_url(redirect_uri=None):
     """Generates the Google OAuth authorization URL for web flow."""
     client_config = get_client_config()
+    if redirect_uri is None:
+        redirect_uri = get_redirect_uri()
+        
     flow = Flow.from_client_config(
         client_config,
         scopes=SCOPES,
@@ -33,9 +48,12 @@ def get_auth_url(redirect_uri="http://localhost:8501/"):
     )
     return auth_url, state
 
-def get_credentials_from_code(code, redirect_uri="http://localhost:8501/"):
+def get_credentials_from_code(code, redirect_uri=None):
     """Exchanges the authorization code for credentials."""
     client_config = get_client_config()
+    if redirect_uri is None:
+        redirect_uri = get_redirect_uri()
+        
     flow = Flow.from_client_config(
         client_config,
         scopes=SCOPES,

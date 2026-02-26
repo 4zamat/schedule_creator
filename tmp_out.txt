@@ -1,0 +1,64 @@
+--- Page 1 ---
+TEXT:
+"Approved by"
+Vice-Rector of Academic Affairs of "Astana IT University" LLP
+______________G. S. Akybayeva
+"__"__________________2026.
+Group AAI-2501M
+Day of the week Time Discipline Classroom Type Lecturer
+13:05-13:55 Teaching methods and strategies online lecture https://learn.astanait.edu.kz/
+18:00-18:50 Artificial intelligence and neural networks C1.1.251L lecture Akhmetova Zhanar
+Monday Big Data Methods and Tools C1.3.235L lecture Alimzhanov Yermek
+19:00-19:50 Big Data Methods and Tools C1.3
+...
+
+TABLES:
+['Day of the week', 'Time', 'Discipline', 'Classroom', 'Type', 'Lecturer']
+['Monday', '13:05-13:55', 'Teaching methods and strategies', 'online', 'lecture', 'https://learn.astanait.edu.kz/']
+[None, '18:00-18:50', 'Artificial intelligence and neural networks\nBig Data Methods and Tools', 'C1.1.251L\nC1.3.235L', 'lecture\nlecture', 'Akhmetova Zhanar\nAlimzhanov Yermek']
+[None, '19:00-19:50', 'Big Data Methods and Tools\nArtificial intelligence and neural networks', 'C1.3.235L\nC1.1.251L', 'lecture\nlecture', 'Alimzhanov Yermek\nAkhmetova Zhanar']
+['Tuesday', '18:00-18:50', 'Introduction to Multi-Agent Systems', 'C1.3.236', 'practice', 'Seema Rawat']
+[None, '19:00-19:50', 'Introduction to Multi-Agent Systems', 'C1.3.236', 'practice', 'Seema Rawat']
+[None, '20:00-20:50', 'Teaching methods and strategies', 'C1.1.226P', 'practice', 'Peter Shon']
+[None, '21:00-21:50', 'Teaching methods and strategies', 'C1.1.226P', 'practice', 'Peter Shon']
+['Wednesday', '18:00-18:50', 'Artificial intelligence and neural networks', 'C1.1.225P', 'practice', 'Akhmetova Zhanar']
+[None, '19:00-19:50', 'Artificial intelligence and neural networks', 'C1.1.225P', 'practice', 'Akhmetova Zhanar']
+['Thursday', '18:00-18:50', 'Computer graphics and modeling in AI\nBig Data Methods and Tools', 'C1.1.256P\nC1.1.255P', 'practice\npractice', 'Akhmetova Zhanar\nAlimzhanov Yermek']
+[None, '19:00-19:50', 'Computer graphics and modeling in AI\nBig Data Methods and Tools', 'C1.1.256P\nC1.1.255P', 'practice\npractice', 'Akhmetova Zhanar\nAlimzhanov Yermek']
+['Friday', '18:00-18:50', 'Computer graphics and modeling in AI', 'C1.3.254L', 'lecture', 'Akhmetova Zhanar']
+[None, '19:00-19:50', 'Computer graphics and modeling in AI', 'C1.3.254L', 'lecture', 'Akhmetova Zhanar']
+['Saturday', '11:00-11:50', 'Teaching methods and strategies', 'C1.1.365P', 'practice', 'Peter Shon']
+======================
+
+--- Page 2 ---
+TEXT:
+"Approved by"
+Vice-Rector of Academic Affairs of "Astana IT University" LLP
+______________G. S. Akybayeva
+"__"__________________2026.
+Group AAI-2502M
+Day of the week Time Discipline Classroom Type Lecturer
+13:05-13:55 Teaching methods and strategies online lecture https://learn.astanait.edu.kz/
+18:00-18:50 Artificial intelligence and neural networks C1.1.251L lecture Akhmetova Zhanar
+Big Data Methods and Tools C1.3.235L lecture Alimzhanov Yermek
+Monday 19:00-19:50 Big Data Methods and Tools C1.3
+...
+
+TABLES:
+['Day of the week', 'Time', 'Discipline', 'Classroom', 'Type', 'Lecturer']
+['Monday', '13:05-13:55', 'Teaching methods and strategies', 'online', 'lecture', 'https://learn.astanait.edu.kz/']
+[None, '18:00-18:50', 'Artificial intelligence and neural networks\nBig Data Methods and Tools', 'C1.1.251L\nC1.3.235L', 'lecture\nlecture', 'Akhmetova Zhanar\nAlimzhanov Yermek']
+[None, '19:00-19:50', 'Big Data Methods and Tools\nArtificial intelligence and neural networks', 'C1.3.235L\nC1.1.251L', 'lecture\nlecture', 'Alimzhanov Yermek\nAkhmetova Zhanar']
+[None, '20:00-20:50', 'Teaching methods and strategies', 'C1.1.222', 'practice', 'Peter Shon']
+[None, '21:00-21:50', 'Teaching methods and strategies', 'C1.1.222', 'practice', 'Peter Shon']
+['Tuesday', '18:00-18:50', 'Teaching methods and strategies', 'C1.1.344P', 'practice', 'Peter Shon']
+[None, '19:00-19:50', 'Teaching methods and strategies', 'C1.1.344P', 'practice', 'Peter Shon']
+[None, '20:00-20:50', 'Introduction to Multi-Agent Systems', 'C1.3.236', 'practice', 'Seema Rawat']
+[None, '21:00-21:50', 'Introduction to Multi-Agent Systems', 'C1.3.236', 'practice', 'Seema Rawat']
+['Wednesday', '18:00-18:50', 'Artificial intelligence and neural networks', 'C1.1.225P', 'practice', 'Akhmetova Zhanar']
+[None, '19:00-19:50', 'Artificial intelligence and neural networks', 'C1.1.225P', 'practice', 'Akhmetova Zhanar']
+['Thursday', '18:00-18:50', 'Computer graphics and modeling in AI\nBig Data Methods and Tools', 'C1.1.256P\nC1.1.255P', 'practice\npractice', 'Akhmetova Zhanar\nAlimzhanov Yermek']
+[None, '19:00-19:50', 'Computer graphics and modeling in AI\nBig Data Methods and Tools', 'C1.1.256P\nC1.1.255P', 'practice\npractice', 'Akhmetova Zhanar\nAlimzhanov Yermek']
+['Friday', '18:00-18:50', 'Computer graphics and modeling in AI', 'C1.3.254L', 'lecture', 'Akhmetova Zhanar']
+======================
+

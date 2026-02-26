@@ -1,0 +1,23 @@
+        Group        Day         Time                                   Discipline  Classroom      Type                        Lecturer
+0   AAI-2501M     Monday  13:05-13:55              Teaching methods and strategies     online   lecture  https://learn.astanait.edu.kz/
+1   AAI-2501M     Monday  18:00-18:50  Artificial intelligence and neural networks  C1.1.251L   lecture                Akhmetova Zhanar
+2   AAI-2501M     Monday  18:00-18:50                   Big Data Methods and Tools  C1.3.235L   lecture               Alimzhanov Yermek
+3   AAI-2501M     Monday  19:00-19:50                   Big Data Methods and Tools  C1.3.235L   lecture               Alimzhanov Yermek
+4   AAI-2501M     Monday  19:00-19:50  Artificial intelligence and neural networks  C1.1.251L   lecture                Akhmetova Zhanar
+5   AAI-2501M    Tuesday  18:00-18:50          Introduction to Multi-Agent Systems   C1.3.236  practice                     Seema Rawat
+6   AAI-2501M    Tuesday  19:00-19:50          Introduction to Multi-Agent Systems   C1.3.236  practice                     Seema Rawat
+7   AAI-2501M    Tuesday  20:00-20:50              Teaching methods and strategies  C1.1.226P  practice                      Peter Shon
+8   AAI-2501M    Tuesday  21:00-21:50              Teaching methods and strategies  C1.1.226P  practice                      Peter Shon
+9   AAI-2501M  Wednesday  18:00-18:50  Artificial intelligence and neural networks  C1.1.225P  practice                Akhmetova Zhanar
+10  AAI-2501M  Wednesday  19:00-19:50  Artificial intelligence and neural networks  C1.1.225P  practice                Akhmetova Zhanar
+11  AAI-2501M   Thursday  18:00-18:50         Computer graphics and modeling in AI  C1.1.256P  practice                Akhmetova Zhanar
+12  AAI-2501M   Thursday  18:00-18:50                   Big Data Methods and Tools  C1.1.255P  practice               Alimzhanov Yermek
+13  AAI-2501M   Thursday  19:00-19:50         Computer graphics and modeling in AI  C1.1.256P  practice                Akhmetova Zhanar
+14  AAI-2501M   Thursday  19:00-19:50                   Big Data Methods and Tools  C1.1.255P  practice               Alimzhanov Yermek
+15  AAI-2501M     Friday  18:00-18:50         Computer graphics and modeling in AI  C1.3.254L   lecture                Akhmetova Zhanar
+16  AAI-2501M     Friday  19:00-19:50         Computer graphics and modeling in AI  C1.3.254L   lecture                Akhmetova Zhanar
+17  AAI-2501M   Saturday  11:00-11:50              Teaching methods and strategies  C1.1.365P  practice                      Peter Shon
+18  AAI-2501M   Saturday  12:00-12:50              Teaching methods and strategies  C1.1.365P  practice                      Peter Shon
+19  AAI-2501M   Saturday  13:05-13:55          Introduction to Multi-Agent Systems   C1.3.370   lecture                     Seema Rawat
+20  AAI-2501M   Saturday  14:00-14:50          Introduction to Multi-Agent Systems   C1.3.370   lecture                     Seema Rawat
+21  AAI-2501M   Saturday  15:00-15:50          Introduction to Multi-Agent Systems   C1.3.370   lecture                     Seema Rawat

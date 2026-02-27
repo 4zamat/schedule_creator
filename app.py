@@ -44,7 +44,24 @@ def main():
             return
 
     programs = df['Program'].unique()
-    selected_program = st.selectbox("Select your Program/Year", options=programs)
+    
+    def format_program_name(name):
+        clean = name.replace("Schedules_", "").replace("Schedule_", "")
+        clean = clean.replace("_", " ").title()
+        # Replace specific abbreviations securely based on word boundaries
+        import re
+        clean = re.sub(r'\bM\b', 'Masters', clean)
+        clean = re.sub(r'\bB\b', 'Bachelors', clean)
+        clean = re.sub(r'\bTrim\b', 'Trimester', clean)
+        return clean.strip()
+        
+    formatted_programs = {p: format_program_name(p) for p in programs}
+    
+    selected_program = st.selectbox(
+        "Select your Program/Year", 
+        options=programs,
+        format_func=lambda x: formatted_programs[x]
+    )
 
     if selected_program:
         # Filter dataframe by the selected program to only show relevant groups
@@ -65,6 +82,7 @@ def main():
         
         # Sort dataframe by day of the week and time
         day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        group_df = group_df.copy()
         group_df['Day'] = pd.Categorical(group_df['Day'], categories=day_order, ordered=True)
         group_df = group_df.sort_values(by=['Day', 'Time'])
         

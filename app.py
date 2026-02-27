@@ -7,12 +7,33 @@ st.set_page_config(page_title="University Calendar Automator", layout="wide")
 
 @st.cache_data
 def load_data():
-    # Use absolute or correct relative path to ensure the loader finds it locally
-    pdf_path = "Schedule_1 course M_3 trim.pdf"
-    return extract_schedule(pdf_path)
+    # Load the pre-parsed CSV database so we don't need raw PDFs on the server
+    return pd.read_csv("database.csv")
+
+def get_base64_of_bin_file(bin_file):
+    import base64
+    import os
+    if os.path.exists(bin_file):
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    return ""
 
 def main():
-    st.title("🎓 University Calendar Automator")
+    # Load and encode local logo
+    logo_base64 = get_base64_of_bin_file("static/AITUlogo.png")
+    img_tag = f'<img src="data:image/png;base64,{logo_base64}" width="80" style="margin-right: 15px;">' if logo_base64 else ""
+
+    # Create a nice header with the logo horizontally aligned
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: center;">
+            {img_tag}
+            <h1 style="margin: 0; padding: 0; font-size: 2.5rem;">Schedule Automator</h1>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     st.markdown("Automate your Trimester 3 schedule sync to Google Calendar.")
 
     with st.spinner("Loading schedule data..."):
@@ -22,34 +43,38 @@ def main():
             st.error(f"Failed to load PDF schedule: {e}")
             return
 
-    groups = df['Group'].unique()
-    selected_group = st.selectbox("Select your Group", options=groups)
+    programs = df['Program'].unique()
+    selected_program = st.selectbox("Select your Program/Year", options=programs)
 
-    if selected_group:
-        group_df = df[df['Group'] == selected_group]
+    if selected_program:
+        # Filter dataframe by the selected program to only show relevant groups
+        program_df = df[df['Program'] == selected_program]
+        groups = program_df['Group'].unique()
+        selected_group = st.selectbox("Select your Group", options=groups)
+
+    if selected_program and selected_group:
+        group_df = program_df[program_df['Group'] == selected_group].copy()
         
         st.subheader(f"Schedule for {selected_group}")
         st.dataframe(group_df)
         
         st.markdown(f"### Customize your Schedule for **{selected_group}**")
-        st.markdown("Select all the subjects you are taking. Each subject has a unique color.")
-        
-        # Generate a distinct color palette based on unique disciplines
-        unique_disciplines = group_df['Discipline'].unique()
-        colors = ['#FFCDD2', '#F8BBD0', '#E1BEE7', '#D1C4E9', '#C5CAE9', '#BBDEFB', '#B3E5FC', '#B2EBF2', '#B2DFDB', '#C8E6C9', '#DCEDC8', '#F0F4C3', '#FFF9C4', '#FFECB3', '#FFE082', '#FFCC80', '#FFAB91', '#BCAAA4', '#EEEEEE']
-        discipline_colors = {disc: colors[i % len(colors)] for i, disc in enumerate(unique_disciplines)}
+        st.markdown("Select all the subjects you are taking.")
         
         selected_events = []
         
-        for index, row in group_df.iterrows():
-            disc_color = discipline_colors.get(row['Discipline'], '#FFFFFF')
-            
-            # Use columns to put a color swatch/styled text next to the checkbox
-            col1, col2 = st.columns([0.05, 0.95])
-            with col1:
-                st.markdown(f'<div style="width: 20px; height: 20px; background-color: {disc_color}; border-radius: 4px; margin-top: 10px;"></div>', unsafe_allow_html=True)
-            with col2:
-                if st.checkbox(f"**{row['Day']} {row['Time']}**: {row['Discipline']} ({row['Type']})", key=f"sec_{index}"):
+        # Sort dataframe by day of the week and time
+        day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        group_df['Day'] = pd.Categorical(group_df['Day'], categories=day_order, ordered=True)
+        group_df = group_df.sort_values(by=['Day', 'Time'])
+        
+        for day, df_day in group_df.groupby('Day', observed=False):
+            if df_day.empty:
+                continue
+                
+            st.markdown(f"#### {day}")
+            for index, row in df_day.iterrows():
+                if st.checkbox(f"**{row['Time']}**: {row['Discipline']} ({row['Type']})", key=f"sec_{index}"):
                     selected_events.append(row.to_dict())
         
         from calendar_sync import get_auth_url, get_credentials_from_code, get_calendar_service, get_or_create_calendar, insert_schedule_events
@@ -159,15 +184,14 @@ def main():
             else:
                 st.write("Select subjects to generate an ICS file.")
                 
-        # Explanation on Links
-        if selected_events:
-            with st.expander("Why is there no single 'Add to Calendar' link?"):
-                st.markdown(
-                    "Google Calendar does not support adding **multiple distinct events** through a single web link URL. "
-                    "To add all of your classes at once natively, you must rely on the **Download .ics Calendar File** button above. "
-                    "\n\nIf this application were hosted on a public web server (like Heroku or AWS), we could generate a dynamic `.ics` subscription URL (e.g., `webcal://mysite.com/schedule.ics`). "
-                    "However, because this is running directly on your local computer, Google's servers cannot reach it to subscribe to the link."
-                )
+        # Footer
+        st.markdown("<br><br>", unsafe_allow_html=True)
+        st.markdown(
+            "<div style='text-align: center; color: gray; font-size: 0.8em;'>"
+            "Made with ❤️ by Aza | Пушок"
+            "</div>", 
+            unsafe_allow_html=True
+        )
 
 if __name__ == "__main__":
     main()

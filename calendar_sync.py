@@ -10,24 +10,36 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 CALENDAR_NAME = "AITU Schedule - Trimester 3"
 
 def get_client_config():
-    """Returns the Google Cloud Client config from Streamlit Secrets or a local file."""
+    """Returns the Google Cloud Client config from Streamlit Secrets, environment vars, or local file."""
+    # 1. Try Streamlit Cloud Secrets
     try:
         if "GCP_CREDENTIALS_JSON" in st.secrets:
             return json.loads(st.secrets["GCP_CREDENTIALS_JSON"])
     except Exception:
         pass
+
+    # 2. Try Standard OS Environment Variables (for Heroku, Docker, etc.)
+    if "GCP_CREDENTIALS_JSON" in os.environ:
+        return json.loads(os.environ["GCP_CREDENTIALS_JSON"])
         
-    # Fallback to local file for development
+    # 3. Fallback to local file for development
     with open('credentials_web.json', 'r') as f:
         return json.load(f)
 
 def get_redirect_uri():
     """Returns the correct redirect URI based on environment (local vs cloud)."""
+    # 1. Try Streamlit Cloud Secrets
     try:
         if "REDIRECT_URI" in st.secrets:
             return st.secrets["REDIRECT_URI"]
     except Exception:
         pass
+        
+    # 2. Try OS Environment variables
+    if "REDIRECT_URI" in os.environ:
+        return os.environ["REDIRECT_URI"]
+        
+    # 3. Fallback to local
     return "http://localhost:8501/"
 
 def get_auth_url(redirect_uri=None):
